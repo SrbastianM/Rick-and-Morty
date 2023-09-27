@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/presentation/cubits/character_cubits.dart';
 import 'package:rick_and_morty/data/repository/rick_and_morty_repo.dart';
 import 'package:rick_and_morty/domain/model/character_model.dart';
+import 'package:rick_and_morty/utils/app_colors.dart';
 import 'package:rick_and_morty/utils/dimensions.dart';
 import 'package:rick_and_morty/presentation/widgets/big_text.dart';
 import 'package:rick_and_morty/presentation/widgets/small_text.dart';
@@ -37,8 +38,8 @@ class _ListOfCharactersState extends State<ListOfCharacters> {
 
               return BlocBuilder<CharactersCubit, List<Character>>(
                 builder: (context, characters) => ListView.builder(
-                  shrinkWrap: true,
                   scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
                   physics: const ScrollPhysics(),
                   itemCount: characters.length,
                   itemBuilder: (context, index) {
@@ -58,10 +59,9 @@ class _ListOfCharactersState extends State<ListOfCharacters> {
                                 Dimensions.radius20,
                               ),
                               color: Colors.white38,
-                              image: const DecorationImage(
-                                fit: BoxFit.cover,
+                              image: DecorationImage(
                                 //widget que tome una url y cargue una imagen
-                                image: AssetImage("asset/Soy ese.png"),
+                                image: NetworkImage((characters[index].image)),
                               ),
                             ),
                           ),
@@ -75,7 +75,7 @@ class _ListOfCharactersState extends State<ListOfCharacters> {
                                   bottomRight:
                                       Radius.circular(Dimensions.radius20),
                                 ),
-                                color: Colors.white,
+                                color: AppColors.cardColor,
                               ),
                               child: Padding(
                                 padding: EdgeInsets.only(
@@ -89,6 +89,10 @@ class _ListOfCharactersState extends State<ListOfCharacters> {
                                     BigText(
                                       text: characters[index].name,
                                     ),
+                                    SizedBox(
+                                      height: Dimensions.height10,
+                                    ),
+                                    SmallText(text: characters[index].status),
                                     SizedBox(
                                       height: Dimensions.height10,
                                     ),

@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:rick_and_morty/domain/model/character_model.dart';
 
