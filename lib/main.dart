@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty/View/character_card.dart';
-import 'package:rick_and_morty/View/home_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+
+import 'package:rick_and_morty/presentation/pages/home_page.dart';
+import 'package:rick_and_morty/presentation/cubits/character_cubits.dart';
+import 'package:rick_and_morty/utils/app_colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +16,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: CharacterCard());
+    return GetMaterialApp(
+      title: 'Rick And Morty',
+      theme: ThemeData(
+        primaryColor: AppColors.mainColor,
+      ),
+      home: BlocProvider(
+        create: (_) => CharactersCubit(),
+        child: const HomePage(),
+      ),
+    );
   }
 }
