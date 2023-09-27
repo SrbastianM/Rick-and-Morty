@@ -14,17 +14,14 @@ class Character {
   });
 
   factory Character.fromJson(dynamic pJson) => Character(
-    id: pJson["id"] ?? "",
-    name: pJson["name"] ?? "",
-    status: pJson["status"] ?? "",
-    location: pJson["name"] ?? "" 
-  );
+      id: pJson["id"] ?? "",
+      name: pJson["name"] ?? "",
+      status: pJson["status"] ?? "",
+      location: pJson["name"] ?? "");
 }
 
 class Location {
   String name;
 
-  Location({
-    required this.name
-  })
+  Location({required this.name});
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty/View/character_card.dart';
-import 'package:rick_and_morty/View/home_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rick_and_morty/cubits/character_cubits.dart';
+import 'package:rick_and_morty/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +13,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: CharacterCard());
+    return MaterialApp(
+      home: BlocProvider(
+        create: (_) => CharactersCubit(),
+        child: const HomePage(),
+      ),
+    );
   }
 }
