@@ -7,9 +7,7 @@ class Episodes extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: const Card(
-        child: Column(
-          children: [ListTile()],
-        ),
+        child: Column(),
       ),
     );
   }

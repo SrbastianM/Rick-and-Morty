@@ -3,10 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/presentation/cubits/character_cubits.dart';
 import 'package:rick_and_morty/data/repository/rick_and_morty_repo.dart';
 import 'package:rick_and_morty/domain/model/character_model.dart';
+import 'package:rick_and_morty/presentation/widgets/character/character.dart';
 import 'package:rick_and_morty/utils/app_colors.dart';
 import 'package:rick_and_morty/utils/dimensions.dart';
-import 'package:rick_and_morty/presentation/widgets/big_text.dart';
-import 'package:rick_and_morty/presentation/widgets/small_text.dart';
+import 'package:rick_and_morty/utils/big_text.dart';
+import 'package:rick_and_morty/utils/small_text.dart';
 
 class ListOfCharacters extends StatefulWidget {
   const ListOfCharacters({super.key});
@@ -26,28 +27,42 @@ class _ListOfCharactersState extends State<ListOfCharacters> {
     return Column(
       children: [
         FutureBuilder(
-            future: getCharacters(),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData || snapshot.hasError) {
-                return const Text("No characters");
-              }
+          future: getCharacters(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData || snapshot.hasError) {
+              return Container(
+                margin: EdgeInsets.only(
+                  top: Dimensions.height20,
+                ),
+                child: BigText(text: "No Characters"),
+              );
+            }
 
-              final characters = snapshot.data!;
+            final characters = snapshot.data!;
 
-              context.read<CharactersCubit>().setCharacters(characters);
+            context.read<CharactersCubit>().setCharacters(characters);
 
-              return BlocBuilder<CharactersCubit, List<Character>>(
-                builder: (context, characters) => ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  physics: const ScrollPhysics(),
-                  itemCount: characters.length,
-                  itemBuilder: (context, index) {
-                    return Container(
+            return BlocBuilder<CharactersCubit, List<Character>>(
+              builder: (context, characters) => ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                physics: const ScrollPhysics(),
+                itemCount: characters.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CharacterPage(),
+                        ),
+                      );
+                    },
+                    child: Container(
                       margin: EdgeInsets.only(
                         left: Dimensions.width20,
                         right: Dimensions.width20,
-                        bottom: Dimensions.height10,
+                        bottom: Dimensions.height20,
                       ),
                       child: Row(
                         children: [
@@ -71,9 +86,9 @@ class _ListOfCharactersState extends State<ListOfCharacters> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   topRight:
-                                      Radius.circular(Dimensions.radius20),
+                                      Radius.circular(Dimensions.radius15),
                                   bottomRight:
-                                      Radius.circular(Dimensions.radius20),
+                                      Radius.circular(Dimensions.radius15),
                                 ),
                                 color: AppColors.cardColor,
                               ),
@@ -108,11 +123,13 @@ class _ListOfCharactersState extends State<ListOfCharacters> {
                           ),
                         ],
                       ),
-                    );
-                  },
-                ),
-              );
-            })
+                    ),
+                  );
+                },
+              ),
+            );
+          },
+        )
       ],
     );
   }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/presentation/widgets/character/character.dart';
+import 'package:rick_and_morty/presentation/pages/characters_page.dart';
 import 'package:rick_and_morty/presentation/widgets/list_recicler.dart';
 import 'package:rick_and_morty/utils/dimensions.dart';
 
@@ -13,14 +15,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // height: Dimensions.screeHeight,
-            ListOfCharacters(),
-          ],
-        ),
-      ),
+      body: CharactersPage(),
     );
   }
 }

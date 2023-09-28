@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:rick_and_morty/presentation/pages/characters_page.dart';
 
 import 'package:rick_and_morty/presentation/pages/home_page.dart';
 import 'package:rick_and_morty/presentation/cubits/character_cubits.dart';
