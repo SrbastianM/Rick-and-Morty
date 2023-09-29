@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/presentation/cubits/character_cubits.dart';
-import 'package:rick_and_morty/data/repository/rick_and_morty_repo.dart';
+import 'package:rick_and_morty/data/repository/character_repo.dart';
 import 'package:rick_and_morty/domain/model/character_model.dart';
-import 'package:rick_and_morty/presentation/widgets/character/character.dart';
+import 'package:rick_and_morty/presentation/pages/character_page.dart';
 import 'package:rick_and_morty/utils/app_colors.dart';
 import 'package:rick_and_morty/utils/dimensions.dart';
 import 'package:rick_and_morty/utils/big_text.dart';
@@ -75,7 +75,6 @@ class _ListOfCharactersState extends State<ListOfCharacters> {
                               ),
                               color: Colors.white38,
                               image: DecorationImage(
-                                //widget que tome una url y cargue una imagen
                                 image: NetworkImage((characters[index].image)),
                               ),
                             ),

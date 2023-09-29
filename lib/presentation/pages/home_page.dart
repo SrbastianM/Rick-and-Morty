@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty/presentation/widgets/character/character.dart';
+import 'package:rick_and_morty/presentation/pages/character_page.dart';
 import 'package:rick_and_morty/presentation/pages/characters_page.dart';
-import 'package:rick_and_morty/presentation/widgets/list_recicler.dart';
+import 'package:rick_and_morty/presentation/widgets/characters/caracter_list_.dart';
 import 'package:rick_and_morty/utils/dimensions.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: CharactersPage(),
     );
   }

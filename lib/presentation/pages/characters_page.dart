@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty/presentation/widgets/characters/widgets/header_characters.dart';
-import 'package:rick_and_morty/presentation/widgets/character/widget/list_recicler.dart';
+import 'package:rick_and_morty/presentation/pages/episodes_page.dart';
+import 'package:rick_and_morty/utils/header.dart';
+import 'package:rick_and_morty/presentation/widgets/characters/caracter_list_.dart';
+import 'package:rick_and_morty/utils/app_colors.dart';
 import 'package:rick_and_morty/utils/dimensions.dart';
 
 class CharactersPage extends StatefulWidget {
@@ -15,16 +17,56 @@ class _CharactersPage extends State<CharactersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: Dimensions.height30,
+      body: Column(
+        children: [
+          Center(
+            child: Container(
+              color: AppColors.iconColor,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                      top: Dimensions.height70,
+                      left: Dimensions.height20,
+                    ),
+                    child: Icon(
+                      Icons.home_outlined,
+                      color: Colors.white,
+                      size: Dimensions.iconSize24,
+                    ),
+                  ),
+                  HeaderCharacters(name: appName),
+                  Container(
+                    margin: EdgeInsets.only(
+                      top: Dimensions.height70,
+                      right: Dimensions.height20,
+                    ),
+                    child: GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const EpisodesPage(),
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.arrow_back,
+                        color: Colors.white,
+                        size: Dimensions.iconSize24,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            HeaderCharacters(name: appName),
-            ListOfCharacters(),
-          ],
-        ),
+          ),
+          const Expanded(
+            child: SingleChildScrollView(
+              child: ListOfCharacters(),
+            ),
+          )
+        ],
       ),
     );
   }

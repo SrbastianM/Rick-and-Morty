@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/utils/app_colors.dart';
 import 'package:rick_and_morty/utils/big_text.dart';
 import 'package:rick_and_morty/utils/dimensions.dart';
 
 class HeaderCharacters extends StatelessWidget {
   final String name;
+  Color? color;
 
-  const HeaderCharacters({
+  HeaderCharacters({
     super.key,
     required this.name,
+    this.color = const Color.fromARGB(255, 253, 242, 225),
   });
 
   @override
@@ -19,17 +22,18 @@ class HeaderCharacters extends StatelessWidget {
         right: Dimensions.width20,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            // margin: EdgeInsets.only(top: Dimensions.width45),
+            margin: EdgeInsets.only(
+                top: Dimensions.width45, bottom: Dimensions.width20),
             alignment: Alignment.center,
             child: Container(
-              margin: EdgeInsets.only(top: Dimensions.height45),
+              margin: EdgeInsets.only(top: Dimensions.height60),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   BigText(
+                    color: color,
                     text: name,
                     size: Dimensions.font26,
                   ),
