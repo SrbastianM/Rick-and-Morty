@@ -36,7 +36,7 @@ class _EpisodesListState extends State<EpisodesList> {
                   margin: EdgeInsets.only(
                     top: Dimensions.height20,
                   ),
-                  child: BigText(text: "No Characters"),
+                  child: BigText(text: "No Episodes"),
                 );
               }
               final episodes = snapshot.data!;
