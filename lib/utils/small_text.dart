@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/utils/app_colors.dart';
 
 class SmallText extends StatelessWidget {
   final String text;
@@ -8,7 +9,7 @@ class SmallText extends StatelessWidget {
   SmallText(
       {super.key,
       required this.text,
-      this.color = const Color(0xFFccc7c5),
+      this.color = AppColors.smallTextColor,
       this.size = 14,
       this.height = 1.2});
 

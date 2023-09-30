@@ -12,6 +12,8 @@ class Dimensions {
   static double height20 = screeHeight / 44.5;
   static double height30 = screeHeight / 29.7;
   static double height45 = screeHeight / 19.7;
+  static double height60 = screeHeight / 14.7;
+  static double height70 = screeHeight / 10.3;
 
   // dynamic width, margin y padding
   static double width10 = screeHeight / 89.03;
