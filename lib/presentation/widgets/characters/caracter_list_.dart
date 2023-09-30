@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_and_morty/presentation/cubits/character_cubits.dart';
+import 'package:rick_and_morty/presentation/cubits/character_cubit.dart';
+import 'package:rick_and_morty/presentation/cubits/characters_cubit.dart';
 import 'package:rick_and_morty/data/repository/character_repo.dart';
 import 'package:rick_and_morty/domain/model/character_model.dart';
 import 'package:rick_and_morty/presentation/pages/character_page.dart';
@@ -49,79 +50,68 @@ class _ListOfCharactersState extends State<ListOfCharacters> {
                 physics: const ScrollPhysics(),
                 itemCount: characters.length,
                 itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CharacterPage(),
+                  return Container(
+                    margin: EdgeInsets.only(
+                      left: Dimensions.width20,
+                      right: Dimensions.width20,
+                      bottom: Dimensions.height20,
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: Dimensions.listViewImg,
+                          height: Dimensions.listViewImg,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              Dimensions.radius20,
+                            ),
+                            color: Colors.white38,
+                            image: DecorationImage(
+                              image: NetworkImage((characters[index].image)),
+                            ),
+                          ),
                         ),
-                      );
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(
-                        left: Dimensions.width20,
-                        right: Dimensions.width20,
-                        bottom: Dimensions.height20,
-                      ),
-                      child: Row(
-                        children: [
-                          Container(
-                            width: Dimensions.listViewImg,
-                            height: Dimensions.listViewImg,
+                        Expanded(
+                          child: Container(
+                            height: Dimensions.listViewTextContSize,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                                Dimensions.radius20,
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(Dimensions.radius15),
+                                bottomRight:
+                                    Radius.circular(Dimensions.radius15),
                               ),
-                              color: Colors.white38,
-                              image: DecorationImage(
-                                image: NetworkImage((characters[index].image)),
+                              color: AppColors.cardColor,
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                left: Dimensions.width10,
+                                right: Dimensions.width10,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  BigText(
+                                    text: characters[index].name,
+                                  ),
+                                  SizedBox(
+                                    height: Dimensions.height10,
+                                  ),
+                                  SmallText(text: characters[index].status),
+                                  SizedBox(
+                                    height: Dimensions.height10,
+                                  ),
+                                  SmallText(
+                                      text: characters[index].location.name),
+                                  SizedBox(
+                                    height: Dimensions.height10,
+                                  ),
+                                ],
                               ),
                             ),
                           ),
-                          Expanded(
-                            child: Container(
-                              height: Dimensions.listViewTextContSize,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight:
-                                      Radius.circular(Dimensions.radius15),
-                                  bottomRight:
-                                      Radius.circular(Dimensions.radius15),
-                                ),
-                                color: AppColors.cardColor,
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                  left: Dimensions.width10,
-                                  right: Dimensions.width10,
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    BigText(
-                                      text: characters[index].name,
-                                    ),
-                                    SizedBox(
-                                      height: Dimensions.height10,
-                                    ),
-                                    SmallText(text: characters[index].status),
-                                    SizedBox(
-                                      height: Dimensions.height10,
-                                    ),
-                                    SmallText(
-                                        text: characters[index].location.name),
-                                    SizedBox(
-                                      height: Dimensions.height10,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   );
                 },

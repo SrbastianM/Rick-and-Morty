@@ -32,17 +32,37 @@ class ApiClient {
       if (response.statusCode == 200) {
         final List data = response.data['results'];
 
-        List<Episodes> characters = [];
+        List<Episodes> episodes = [];
         for (var el in data) {
-          characters.add(Episodes.fromJson(el));
+          episodes.add(Episodes.fromJson(el));
         }
-        return characters;
+        return episodes;
       } else {
         return [];
       }
     } catch (e) {
       print(e);
       return [];
+    }
+  }
+
+  Future<Character?> filterCharacter(String name) async {
+    try {
+      Response response = await dio.get("$url/character/?name=$name");
+      if (response.statusCode == 200) {
+        final List data = response.data['results'];
+
+        List<Character> characters = [];
+        for (var el in data) {
+          characters.add(Character.fromJson(el));
+        }
+        return characters.first;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print(e);
+      return null;
     }
   }
 }

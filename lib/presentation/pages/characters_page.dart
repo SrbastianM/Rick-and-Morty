@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/presentation/pages/character_page.dart';
 import 'package:rick_and_morty/presentation/pages/episodes_page.dart';
 import 'package:rick_and_morty/utils/header.dart';
 import 'package:rick_and_morty/presentation/widgets/characters/caracter_list_.dart';
@@ -13,6 +16,11 @@ class CharactersPage extends StatefulWidget {
 }
 
 class _CharactersPage extends State<CharactersPage> {
+  Icon customIcon = Icon(
+    Icons.search,
+    color: Colors.white,
+    size: Dimensions.iconSize24,
+  );
   final String appName = "Characters";
   @override
   Widget build(BuildContext context) {
@@ -31,10 +39,15 @@ class _CharactersPage extends State<CharactersPage> {
                       top: Dimensions.height70,
                       left: Dimensions.height20,
                     ),
-                    child: Icon(
-                      Icons.home_outlined,
-                      color: Colors.white,
-                      size: Dimensions.iconSize24,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.home_outlined,
+                        color: Colors.white,
+                        size: Dimensions.iconSize24,
+                      ),
                     ),
                   ),
                   HeaderCharacters(name: appName),
@@ -43,17 +56,13 @@ class _CharactersPage extends State<CharactersPage> {
                       top: Dimensions.height70,
                       right: Dimensions.height20,
                     ),
-                    child: GestureDetector(
-                      onTap: () => Navigator.push(
+                    child: IconButton(
+                      icon: customIcon,
+                      onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const EpisodesPage(),
+                          builder: (context) => const CharacterPage(),
                         ),
-                      ),
-                      child: Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                        size: Dimensions.iconSize24,
                       ),
                     ),
                   ),
