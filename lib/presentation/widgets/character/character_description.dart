@@ -119,13 +119,14 @@ class _DescriptionCharacterState extends State<DescriptionCharacter> {
               const Divider(),
               Container(
                 margin: EdgeInsets.only(top: Dimensions.height10),
-                child: Center(
-                  child: TextField(
-                    controller: _controller,
-                    onSubmitted: (String value) async {
-                      onInputSubmit(value);
-                    },
-                  ),
+                child: TextField(
+                  decoration: InputDecoration(
+                      labelText: "Enter the name of another character",
+                      prefixIcon: Icon(Icons.person)),
+                  controller: _controller,
+                  onSubmitted: (String value) async {
+                    onInputSubmit(value);
+                  },
                 ),
               ),
               const Divider(),
@@ -133,11 +134,21 @@ class _DescriptionCharacterState extends State<DescriptionCharacter> {
           );
         } else {
           return Center(
-            child: TextField(
-              controller: _controller,
-              onSubmitted: (String value) async {
-                onInputSubmit(value);
-              },
+            child: Column(
+              children: [
+                SizedBox(
+                  height: Dimensions.height20,
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                      labelText: "Enter a character name",
+                      prefixIcon: Icon(Icons.person)),
+                  controller: _controller,
+                  onSubmitted: (String value) async {
+                    onInputSubmit(value);
+                  },
+                ),
+              ],
             ),
           );
         }
